@@ -11,7 +11,7 @@ public class Gracz implements Serializable {
 
     /**
      * @param imie the imie
-     * @param saldo the imie
+     * @param saldo the saldo gracza
      */
     public Gracz(String imie, int saldo) {
 

@@ -7,6 +7,7 @@ public class mainMenu {
     public JPanel panel;
     public JLabel logoLabel;
     public JButton przyciskZagraj;
+    public JButton przyciskBJ;
     public JButton przyciskWyjdz;
 
     public mainMenu() {
@@ -32,6 +33,16 @@ public class mainMenu {
             }
         });
 
+        przyciskBJ = new JButton("Zagraj w BlackJack'a ");
+        przyciskBJ.setFont(new Font("Arial", Font.PLAIN, 18));
+        przyciskBJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        przyciskBJ.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new BlackjackFrame();
+                frame.dispose();
+            }
+        });
+
         przyciskWyjdz = new JButton("Zakończ");
         przyciskWyjdz.setFont(new Font("Arial", Font.PLAIN, 18));
         przyciskWyjdz.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -43,6 +54,8 @@ public class mainMenu {
 
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(przyciskZagraj);
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(przyciskBJ);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(przyciskWyjdz);
 
