@@ -115,6 +115,7 @@ public class kolkoKrzyzyk implements ActionListener{
     }
 
     public static void main(String[] args){
+
         new kolkoKrzyzyk();
     }
 }
