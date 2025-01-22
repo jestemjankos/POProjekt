@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/TimingFramework_0_55.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DiceGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DicePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JlabelExt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kostka.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoginScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RegisterScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ScoreBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logInScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projektPO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projektPO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,11 +43,12 @@
     "Application.Main.executor": "Run",
     "Application.RegisterScreen.executor": "Run",
     "Application.kolkoKrzyzyk.executor": "Run",
+    "Application.logInScreen.executor": "Run",
     "Application.mainMenu.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "kosci",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jaex/IdeaProjects/Proj1",
     "node.js.detected.package.eslint": "true",

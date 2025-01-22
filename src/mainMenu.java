@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class mainMenu {
+    private Gracz gracz; // Obiekt Gracz
+
     public JFrame frame;
     public JPanel panel;
     public JLabel logoLabel;
@@ -10,7 +12,9 @@ public class mainMenu {
     public JButton przyciskBJ;
     public JButton przyciskWyjdz;
 
-    public mainMenu() {
+    public mainMenu(Gracz gracz) {
+        this.gracz = gracz; // Przypisanie gracza do pola
+
         frame = new JFrame("Kasyno BETA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
@@ -22,6 +26,11 @@ public class mainMenu {
         logoLabel = new JLabel(new ImageIcon("src/logo.png"));
         logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(logoLabel);
+
+        JLabel saldoLabel = new JLabel("Saldo: " + gracz.getSaldo() + " PLN", SwingConstants.CENTER);
+        saldoLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        saldoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(saldoLabel);
 
         przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
         przyciskZagraj.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -63,8 +72,14 @@ public class mainMenu {
         frame.setVisible(true);
     }
 
+    public mainMenu() {
+        this(new Gracz("Default", 1000)); // Domyślny konstruktor
+    }
+
     public static void main(String[] args) {
-        new mainMenu();
+        // Przyklad: Utworzenie obiektu Gracz i otwarcie menu
+        Gracz gracz = new Gracz("Player1", 1000);
+        new mainMenu(gracz);
     }
 }
 
