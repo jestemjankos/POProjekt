@@ -8,6 +8,7 @@ public class mainMenu {
     public JLabel logoLabel;
     public JButton przyciskZagraj;
     public JButton przyciskBJ;
+    public JButton przyciskKosci;
     public JButton przyciskWyjdz;
 
     public mainMenu() {
@@ -43,6 +44,16 @@ public class mainMenu {
             }
         });
 
+        przyciskKosci = new JButton("Zagraj w Kości");
+        przyciskKosci.setFont(new Font("Arial", Font.PLAIN, 18));
+        przyciskKosci.setAlignmentX(Component.CENTER_ALIGNMENT);
+        przyciskKosci.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new DiceGame();
+                frame.dispose();
+            }
+        });
+
         przyciskWyjdz = new JButton("Zakończ");
         przyciskWyjdz.setFont(new Font("Arial", Font.PLAIN, 18));
         przyciskWyjdz.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -56,6 +67,8 @@ public class mainMenu {
         panel.add(przyciskZagraj);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(przyciskBJ);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(przyciskKosci);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(przyciskWyjdz);
 

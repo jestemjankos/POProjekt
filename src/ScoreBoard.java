@@ -52,7 +52,7 @@ public class ScoreBoard extends JPanel{
         calkowityWynik = 0;
         for (int i = 1; i < rows; i++) {
             for (int j = 1; j < cols; j++) {
-                scores[i][j] = new JLabel("");
+                scores[i][j] = new JLabel(" ");
                 //aktywnoscPunktacji.put(scores[i][j], false);
             }
         }
@@ -77,7 +77,28 @@ public class ScoreBoard extends JPanel{
         for (int i = 1; i < rows; i++) {
             for (int j = 1; j < cols; j++) {
                 scores[i][j].addMouseListener(listener);
+                scores[i][j].setOpaque(false);
+                scores[i][j].setBackground(new Color(213,241,126));
+
             }
+        }
+    }
+    public void podswietlTabele(int[] punkty)
+    {
+        for (int i = 1; i < rows - 1; i++) {
+            if(punkty[i-1] > 0 && nieWykorzystane[i-1])
+            {
+                scores[i][1].setOpaque(true);
+                scores[i][1].repaint();
+            }
+        }
+    }
+    public void wygasTabele(int poczatek, int koniec)
+    {
+        for(int i = poczatek + 1; i <= koniec; i++)
+        {
+            scores[i][1].setOpaque(false);
+            scores[i][1].repaint();
         }
     }
 }

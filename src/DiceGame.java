@@ -1,98 +1,149 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class DiceGame implements ActionListener{
-    public JFrame frame;
+    private JFrame frame;
+    private JFrame frameSummary;
+    private JPanel summaryPanel;
     public DicePanel panel;
     public ScoreBoard scoreBoard;
-    private int[] punkty;
+    private JSplitPane splitPane;
+    private int[] punkty = {0,0,0,0,0,0,0,0,0,0,0,0,0};
     private int pozostaleTury;
+    private int rerols = 0;
     Timer timer;
+    private enum StanGry{
+        PierwszyRzyt,
+        WTrakcieRerolli,
+        ZapisPunktow
+    }
+    private boolean punktuZaGornaCzescTabeli = true;
+    private boolean punktyZaDolnaCzescTabeli = true;
+    StanGry stanGry = StanGry.PierwszyRzyt;
     public static void main(String[] args) {
         new DiceGame();
     }
     protected class mouseClickListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         JLabel source = (JLabel) e.getSource();
-        if(scoreBoard.scores[1][1] == source && punkty[0] > 0 && scoreBoard.nieWykorzystane[0]) //mozliwe punkty za jedynki
+        if(stanGry != StanGry.ZapisPunktow)
         {
-            source.setText(punkty[0] + "");
-            scoreBoard.nieWykorzystane[0] = false;
-            scoreBoard.calkowityWynik += punkty[0];
+            return;
         }
-        if(scoreBoard.scores[2][1] == source && punkty[1] > 0 && scoreBoard.nieWykorzystane[1]) //mozliwe punkty za dwójki
+        if(punktuZaGornaCzescTabeli)
         {
-            source.setText(punkty[1] + "");
-            scoreBoard.nieWykorzystane[1] = false;
-            scoreBoard.calkowityWynik += punkty[1];
+            if(scoreBoard.scores[1][1] == source && punkty[0] > 0 && scoreBoard.nieWykorzystane[0]) //mozliwe punkty za jedynki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[0] + "");
+                scoreBoard.nieWykorzystane[0] = false;
+                scoreBoard.calkowityWynik += punkty[0];
+                scoreBoard.wygasTabele(0, 6);
+            }
+            if(scoreBoard.scores[2][1] == source && punkty[1] > 0 && scoreBoard.nieWykorzystane[1]) //mozliwe punkty za dwójki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[1] + "");
+                scoreBoard.nieWykorzystane[1] = false;
+                scoreBoard.calkowityWynik += punkty[1];
+                scoreBoard.wygasTabele(0, 6);
+            }
+            if(scoreBoard.scores[3][1] == source && punkty[2] > 0 && scoreBoard.nieWykorzystane[2]) //mozliwe punkty za trójki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[2] + "");
+                scoreBoard.nieWykorzystane[2] = false;
+                scoreBoard.calkowityWynik += punkty[2];
+                scoreBoard.wygasTabele(0, 6);
+            }
+            if(scoreBoard.scores[4][1] == source && punkty[3] > 0 && scoreBoard.nieWykorzystane[3]) //mozliwe punkty za czwórki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[3] + "");
+                scoreBoard.nieWykorzystane[3] = false;
+                scoreBoard.calkowityWynik += punkty[3];
+                scoreBoard.wygasTabele(0, 6);
+            }
+            if(scoreBoard.scores[5][1] == source && punkty[4] > 0 && scoreBoard.nieWykorzystane[4]) //mozliwe punkty za piątki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[4] + "");
+                scoreBoard.nieWykorzystane[4] = false;
+                scoreBoard.calkowityWynik += punkty[4];
+                scoreBoard.wygasTabele(0, 6);
+            }
+            if(scoreBoard.scores[6][1] == source && punkty[5] > 0 && scoreBoard.nieWykorzystane[5]) //mozliwe punkty za szóstki
+            {
+                punktuZaGornaCzescTabeli = false;
+                source.setText(punkty[5] + "");
+                scoreBoard.nieWykorzystane[5] = false;
+                scoreBoard.calkowityWynik += punkty[5];
+                scoreBoard.wygasTabele(0, 6);
+            }
         }
-        if(scoreBoard.scores[3][1] == source && punkty[2] > 0 && scoreBoard.nieWykorzystane[2]) //mozliwe punkty za trójki
+
+        if(punktyZaDolnaCzescTabeli)
         {
-            source.setText(punkty[2] + "");
-            scoreBoard.nieWykorzystane[2] = false;
-            scoreBoard.calkowityWynik += punkty[2];
+            if(scoreBoard.scores[7][1] == source && punkty[6] > 0 && scoreBoard.nieWykorzystane[6]) //mozliwe punkty za trzy jednakowe
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[6] + "");
+                scoreBoard.nieWykorzystane[6] = false;
+                scoreBoard.calkowityWynik += punkty[6];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[8][1] == source && punkty[7] > 0 && scoreBoard.nieWykorzystane[7]) //mozliwe punkty za cztery jednakowe
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[7] + "");
+                scoreBoard.nieWykorzystane[7] = false;
+                scoreBoard.calkowityWynik += punkty[7];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[9][1] == source && punkty[8] > 0 && scoreBoard.nieWykorzystane[8]) //mozliwe punkty za fulla
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[8] + "");
+                scoreBoard.nieWykorzystane[8] = false;
+                scoreBoard.calkowityWynik += punkty[8];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[10][1] == source && punkty[9] > 0 && scoreBoard.nieWykorzystane[9]) //mozliwe punkty za małego strita
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[9] + "");
+                scoreBoard.nieWykorzystane[9] = false;
+                scoreBoard.calkowityWynik += punkty[9];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[11][1] == source && punkty[10] > 0 && scoreBoard.nieWykorzystane[10]) //mozliwe punkty za dużego strita
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[10] + "");
+                scoreBoard.nieWykorzystane[10] = false;
+                scoreBoard.calkowityWynik += punkty[10];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[12][1] == source && punkty[11] > 0 && scoreBoard.nieWykorzystane[11]) //mozliwe punkty za generała
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[11] + "");
+                scoreBoard.nieWykorzystane[11] = false;
+                scoreBoard.calkowityWynik += punkty[11];
+                scoreBoard.wygasTabele(6, 13);
+            }
+            if(scoreBoard.scores[13][1] == source && punkty[12] > 0 && scoreBoard.nieWykorzystane[12]) //mozliwe punkty za szansę
+            {
+                punktyZaDolnaCzescTabeli = false;
+                source.setText(punkty[12] + "");
+                scoreBoard.nieWykorzystane[12] = false;
+                scoreBoard.calkowityWynik += punkty[12];
+                scoreBoard.wygasTabele(6, 13);
+            }
         }
-        if(scoreBoard.scores[4][1] == source && punkty[3] > 0 && scoreBoard.nieWykorzystane[3]) //mozliwe punkty za czwórki
-        {
-            source.setText(punkty[3] + "");
-            scoreBoard.nieWykorzystane[3] = false;
-            scoreBoard.calkowityWynik += punkty[3];
-        }
-        if(scoreBoard.scores[5][1] == source && punkty[4] > 0 && scoreBoard.nieWykorzystane[4]) //mozliwe punkty za piątki
-        {
-            source.setText(punkty[4] + "");
-            scoreBoard.nieWykorzystane[4] = false;
-            scoreBoard.calkowityWynik += punkty[4];
-        }
-        if(scoreBoard.scores[6][1] == source && punkty[5] > 0 && scoreBoard.nieWykorzystane[5]) //mozliwe punkty za szóstki
-        {
-            source.setText(punkty[5] + "");
-            scoreBoard.nieWykorzystane[5] = false;
-            scoreBoard.calkowityWynik += punkty[5];
-        }
-        if(scoreBoard.scores[7][1] == source && punkty[6] > 0 && scoreBoard.nieWykorzystane[6]) //mozliwe punkty za trzy jednakowe
-        {
-            source.setText(punkty[6] + "");
-            scoreBoard.nieWykorzystane[6] = false;
-            scoreBoard.calkowityWynik += punkty[6];
-        }
-        if(scoreBoard.scores[8][1] == source && punkty[7] > 0 && scoreBoard.nieWykorzystane[7]) //mozliwe punkty za cztery jednakowe
-        {
-            source.setText(punkty[7] + "");
-            scoreBoard.nieWykorzystane[7] = false;
-            scoreBoard.calkowityWynik += punkty[7];
-        }
-        if(scoreBoard.scores[9][1] == source && punkty[8] > 0 && scoreBoard.nieWykorzystane[8]) //mozliwe punkty za fulla
-        {
-            source.setText(punkty[8] + "");
-            scoreBoard.nieWykorzystane[8] = false;
-            scoreBoard.calkowityWynik += punkty[8];
-        }
-        if(scoreBoard.scores[10][1] == source && punkty[9] > 0 && scoreBoard.nieWykorzystane[9]) //mozliwe punkty za małego strita
-        {
-            source.setText(punkty[9] + "");
-            scoreBoard.nieWykorzystane[9] = false;
-            scoreBoard.calkowityWynik += punkty[9];
-        }
-        if(scoreBoard.scores[11][1] == source && punkty[10] > 0 && scoreBoard.nieWykorzystane[10]) //mozliwe punkty za dużego strita
-        {
-            source.setText(punkty[10] + "");
-            scoreBoard.nieWykorzystane[10] = false;
-            scoreBoard.calkowityWynik += punkty[10];
-        }
-        if(scoreBoard.scores[12][1] == source && punkty[11] > 0 && scoreBoard.nieWykorzystane[11]) //mozliwe punkty za generała
-        {
-            source.setText(punkty[11] + "");
-            scoreBoard.nieWykorzystane[11] = false;
-            scoreBoard.calkowityWynik += punkty[11];
-        }
-        if(scoreBoard.scores[13][1] == source && punkty[12] > 0 && scoreBoard.nieWykorzystane[12]) //mozliwe punkty za szansę
-        {
-            source.setText(punkty[12] + "");
-            scoreBoard.nieWykorzystane[12] = false;
-            scoreBoard.calkowityWynik += punkty[12];
-        }
+
 
 
 
@@ -124,51 +175,198 @@ public class DiceGame implements ActionListener{
         panel.setPreferredSize(new Dimension(900, 800));
         panel.setBackground(Color.GRAY);
         panel.rollButton.addActionListener(this);
+        panel.powrot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new mainMenu();
+                frame.dispose();
+            }
+        });
+        panel.rerollButton.addActionListener(this);
         timer = new Timer(10, panel); // co 0.01s
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scoreBoard, panel);
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scoreBoard, panel);
         splitPane.setDividerLocation(0.3);
         splitPane.setResizeWeight(0.3);
         splitPane.setContinuousLayout(true);
         splitPane.setDividerSize(0);
 
         frame.add(splitPane);
-        //scoreBoard.scores[3][1].setText("asd");
-        //frame.pack();
+
         frame.setVisible(true);
         frame.setResizable(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JButton source = (JButton) e.getSource();
+        panel.aktualizujPodejscia((rerols-1 == -1) ? 3 : rerols - 1);
+        //System.out.println(Arrays.toString(panel.ostateczneWartosci));
+        if(panel.ostateczneWartosciIndex == 5) //wszystkie kości zostały zachowane
+        {
+            rerols = 0; //przejdź do podsumowania
+        }
+        if (e.getSource() == panel.rerollButton && rerols > 0 && panel.stanKubka)
+        {
+            panel.pokazKubek();
+            timer.start();
+            source.setText("STOP");
+            panel.ukryjKosci();
+            panel.stanKubka = false;
+        }else if(e.getSource() == panel.rerollButton && rerols > 1)
+        {
+            panel.ukryjKubek();
+            rerols--;
+            timer.stop();
+            panel.pokazKosci(false);
+            source.setText("REROLL");
+            //punkty = panel.podliczPunkty();
+            //podliczPunkty();
+            panel.stanKubka = true;
+            //kostka1.setBounds(xPos + 20, yPos + 210, 30, 30); //poprawne ustawienie miejsca kostek odmawia współpracy
+        }else if(e.getSource() == panel.rerollButton && rerols == 1)
+        {
+            panel.ukryjKubek();
+            rerols--;
+            timer.stop();
+            panel.pokazKosci(true);
+            source.setText("REROLL");
+            //punkty = panel.podliczPunkty();
+            //podliczPunkty();
+            panel.stanKubka = true;
+        }else if (e.getSource() == panel.rerollButton && panel.stanKubka && rerols <= 0) //koniec rollowania, przejdz do zapisu punktów
+        {
+            source.setVisible(false);
+            podliczPunkty();
+            panel.rollButton.setVisible(true);
+            stanGry = StanGry.ZapisPunktow;
+            panel.wylaczKosci();
+        }
+
         if (e.getSource() == panel.rollButton) {
+            resetujStanGry();
+            rerols = 3;
+            source.setVisible(false);
+            panel.rerollButton.setVisible(true);
+            pozostaleTury--;
+            panel.aktualizujRundy((pozostaleTury-1 == -1) ? 3 : pozostaleTury - 1);
+            if(pozostaleTury == 0)
+            {
+                panel.setVisible(false);
+                /*
+                frame.setVisible(false);
+                frameSummary = new JFrame("Podsumowanie");
+                frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                frame.setSize(500, 400);
+                frame.setLocationRelativeTo(null);
+                frame.setLayout(new BorderLayout());
+
+                summaryPanel = new JPanel(new BorderLayout());
+
+                 */
+            }
+
             if (panel.stanKubka && pozostaleTury > 0) {
-                pozostaleTury--;
+                stanGry = StanGry.WTrakcieRerolli;
+                panel.pokazKubek();
                 timer.start();
                 panel.ukryjKosci();
                 panel.stanKubka = false;
-            }else if(pozostaleTury > 0)
+            }/*else if(pozostaleTury > 0)
             {
                 timer.stop();
-                panel.pokazKosci();
-                punkty = panel.podliczPunkty();
+                panel.pokazKosci(false);
+                //punkty = panel.podliczPunkty();
                 //podliczPunkty();
                 panel.stanKubka = true;
                 //kostka1.setBounds(xPos + 20, yPos + 210, 30, 30); //poprawne ustawienie miejsca kostek odmawia współpracy
-            }else
-            {
-                panel.setVisible(false);
-            }
-        }
-    }
-    /*
-    private void podliczPunkty() {
-        if(punkty[0] > 0) //mozliwe punkty za jedynki
-        {
-            scoreBoard.aktywnoscPunktacji[0] = 1;
+            }*/
         }
     }
 
-     */
+    private void podliczPunkty() {
+        panel.przywrocKosci();
+        int [] wartosci = panel.ostateczneWartosci;
+        Arrays.sort(wartosci);
+        int suma = 0;
+        int maxJednakowych = 1;
+        int jednakowych = 1;
+        boolean para = false;
+        boolean duzyStrit = true;
+        int malyStrit = 1;
+        boolean czyMalyStrit = false;
+        for (int i = 0; i < 5; i++) {
+            suma += wartosci[i];
+            punkty[0] += (wartosci[i] == 1) ? 1 : 0; //jedynki
+            punkty[1] += (wartosci[i] == 2) ? 2 : 0; //dwójki
+            punkty[2] += (wartosci[i] == 3) ? 3 : 0; //trójki
+            punkty[3] += (wartosci[i] == 4) ? 4 : 0; //czwórki
+            punkty[4] += (wartosci[i] == 5) ? 5 : 0; //piątki
+            punkty[5] += (wartosci[i] == 6) ? 6 : 0; //szóstki
+        }
+        punkty[12] = suma;
+        int pierwszaWartosc = wartosci[0];
+        for (int i = 1; i < 5; i++) {
+            if(wartosci[i] != wartosci[i-1])
+            {
+                duzyStrit = false;
+            }
+            if(wartosci[i] == wartosci[i-1] + 1)
+            {
+                malyStrit += 1;
+                if(malyStrit == 4)
+                {
+                    czyMalyStrit = true;
+                }
+            }else
+            {
+                malyStrit = 1;
+            }
+            if(wartosci[i] == pierwszaWartosc)
+            {
+                jednakowych++;
+            }else
+            {
+                if(jednakowych == 2) //jest dokładnie 2
+                {
+                    para = true;
+                }
+                maxJednakowych = Math.max(jednakowych, maxJednakowych);
+                jednakowych = 1;
+                pierwszaWartosc = wartosci[i];
+            }
+        }
+        if(jednakowych == 2) //powtórzyć po pętli aby sprawdzić czy ostatnie przejście nie spełniło warunku pomijając blok else
+        {
+            para = true;
+        }
+        maxJednakowych = Math.max(jednakowych, maxJednakowych);
+
+        punkty[6] += (maxJednakowych >= 3) ? suma : 0; //trzy jednakowe
+        punkty[7] += (maxJednakowych >= 4) ? suma : 0; //cztery jednakowe
+        punkty[8] += (maxJednakowych == 3 && para) ? 25 : 0; //full
+        punkty[9] += (czyMalyStrit) ? 30 : 0; //mały strit
+        punkty[10] += (duzyStrit) ? 40 : 0; //duży strit
+        punkty[11] += (maxJednakowych >= 5) ? 50 : 0; //generał
+
+
+
+        //podświetl dostępne pola
+        scoreBoard.podswietlTabele(punkty);
+
+    }
+    private void resetujStanGry()
+    {
+        rerols = 3;
+        stanGry = StanGry.PierwszyRzyt;
+        punktuZaGornaCzescTabeli = true;
+        punktyZaDolnaCzescTabeli = true;
+        panel.pokazKubek();
+        scoreBoard.wygasTabele(0, 13);
+        for(int i = 0; i < 13; i++)
+        {
+            punkty[i] = 0;
+        }
+        panel.resetujStanGry();
+    }
 }
 
