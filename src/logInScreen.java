@@ -102,6 +102,35 @@ public class logInScreen {
     }
 
     public static void main(String[] args) {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+
+            //System.out.println(info + " - " + info.getName()); //wy�wietlenie dost�pnych opcji!
+
+            //ustawienie Nimbus
+
+            if ("Nimbus".equals(info.getName())) {
+
+                try {
+
+                    UIManager.setLookAndFeel(info.getClassName());
+
+                } catch (ClassNotFoundException | InstantiationException
+
+                         | IllegalAccessException
+
+                         | UnsupportedLookAndFeelException e) {
+
+                    // TODO Auto-generated catch block
+
+                    e.printStackTrace();
+
+                }
+
+                break;
+
+            }
+
+        }
         new logInScreen();
     }
     private boolean logowanie(String nick, String password)

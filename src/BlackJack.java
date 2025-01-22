@@ -9,8 +9,8 @@ public class BlackJack {
     private final DealerHand dealerHand;
     private final PlayerHand playerHand;
 
-    private final int boardWidth = 600;
-    private final int boardHeight = boardWidth;
+    private final int boardWidth = 800;
+    private final int boardHeight = 600;
     private final int cardWidth = 110;
     private final int cardHeight = 154;
 
@@ -261,6 +261,7 @@ public class BlackJack {
         replayButton.setEnabled(true);
         wrocButton.setEnabled(true);
         gamePanel.repaint();
+        playButton.setEnabled(false);
     }
 
     private void updateButtonStates(boolean duringGame) {
@@ -268,6 +269,6 @@ public class BlackJack {
         stayButton.setEnabled(duringGame);
         playButton.setEnabled(!duringGame);
         replayButton.setEnabled(!duringGame);
-        wrocButton.setEnabled(true);
+        wrocButton.setEnabled(!duringGame);
     }
 }

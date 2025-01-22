@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class mainMenu {
     private Gracz gracz; // Obiekt Gracz
@@ -36,7 +33,7 @@ public class mainMenu {
         saldoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(saldoLabel);
 
-        przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
+        /*przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
         przyciskZagraj.setFont(new Font("Arial", Font.PLAIN, 18));
         przyciskZagraj.setAlignmentX(Component.CENTER_ALIGNMENT);
         przyciskZagraj.addActionListener(new ActionListener() {
@@ -44,7 +41,7 @@ public class mainMenu {
                 new kolkoKrzyzyk();
                 frame.dispose();
             }
-        });
+        });*/
 
         przyciskBJ = new JButton("Zagraj w BlackJack'a ");
         przyciskBJ.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -75,8 +72,8 @@ public class mainMenu {
             }
         });
 
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        panel.add(przyciskZagraj);
+        //panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        //panel.add(przyciskZagraj);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(przyciskBJ);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -93,7 +90,38 @@ public class mainMenu {
     }
 
     public static void main(String[] args) {
-        new mainMenu();
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+
+            //System.out.println(info + " - " + info.getName()); //wy�wietlenie dost�pnych opcji!
+
+            //ustawienie Nimbus
+
+            if ("Nimbus".equals(info.getName())) {
+
+                try {
+
+                    UIManager.setLookAndFeel(info.getClassName());
+
+                } catch (ClassNotFoundException | InstantiationException
+
+                         | IllegalAccessException
+
+                         | UnsupportedLookAndFeelException e) {
+
+                    // TODO Auto-generated catch block
+
+                    e.printStackTrace();
+
+                }
+
+                break;
+
+            }
+
+        }
+        // Przyklad: Utworzenie obiektu Gracz i otwarcie menu
+        Gracz gracz = new Gracz("Player1", 1000);
+        new mainMenu(gracz);
     }
 }
 
