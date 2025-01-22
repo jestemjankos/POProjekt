@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class mainMenu {
     private Gracz gracz; // Obiekt Gracz
@@ -90,9 +93,7 @@ public class mainMenu {
     }
 
     public static void main(String[] args) {
-        // Przyklad: Utworzenie obiektu Gracz i otwarcie menu
-        Gracz gracz = new Gracz("Player1", 1000);
-        new mainMenu(gracz);
+        new mainMenu();
     }
 }
 

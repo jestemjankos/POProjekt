@@ -1,27 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class logInScreen {
+public class registerScreen {
     private final String filePath = "src/users.txt";
     public JFrame frame;
     public JPanel panel;
     public JTextField nickField;
     private JPasswordField passwordField;
+    private JPasswordField passwordField2;
     public JButton loginButton;
-    public JButton registerButton;
+    private JButton registerButton;
     public JLabel messageLabel;
     private final String listaGraczy = "src/listaGraczy.bin";
     private final String daneGraczy = "src/daneGraczy.bin";
-    public logInScreen() {
-        frame = new JFrame("Logowanie - Kasyno BETA");
+    public registerScreen() {
+        frame = new JFrame("Rejestracja - Kasyno BETA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 310);
+        frame.setSize(400, 400);
         frame.setLocationRelativeTo(null);
 
         panel = new JPanel();
@@ -44,36 +46,41 @@ public class logInScreen {
         passwordField = new JPasswordField(15);
         passwordField.setMaximumSize(new Dimension(200, 30));
 
-        registerButton = new JButton("Rejestracja");
-        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new registerScreen();
-                frame.dispose();
-            }
-        });
-        loginButton = new JButton("Zaloguj się");
+        JLabel passwordLabel2 = new JLabel("Powtórz hasło:");
+        passwordLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        passwordField2 = new JPasswordField(15);
+        passwordField2.setMaximumSize(new Dimension(200, 30));
+
+        loginButton = new JButton("Logowanie");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new logInScreen();
+                frame.dispose();
+            }
+        });
+
+        registerButton = new JButton("Zarejestruj");
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 String nick = nickField.getText().trim();
 
-                if (!nick.isEmpty() && logowanie(nick, hashowanie(passwordField.getPassword()))) {
-                    Gracz gracz = null; // wczytanie danych o graczu
-                    try {
-                        gracz = wczytajGracza(nick);
-                    } catch (FileNotFoundException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    if(gracz != null)
+                if (!nick.isEmpty() && czyWolnyLogin(nick)) {
+                    if(rejestrowanie(nick, hashowanie(passwordField.getPassword()), hashowanie(passwordField2.getPassword())))
                     {
-                        new mainMenu(gracz); // Przejście do menu głównego
+                        utworzNowegoGracza(nick);
+                        new logInScreen(); // Przejście do logowania
                         frame.dispose();
+                    }else
+                    {
+                        messageLabel.setText("Hasła się nie zgadzają");
                     }
                 } else {
-                    messageLabel.setText("Niepoprawny login lub hasło");
+                    messageLabel.setText("Login jest zajęty");
                 }
             }
         });
@@ -91,9 +98,12 @@ public class logInScreen {
         panel.add(passwordLabel);
         panel.add(passwordField);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        panel.add(loginButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(passwordLabel2);
+        panel.add(passwordField2);
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(registerButton);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(loginButton);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(messageLabel);
 
@@ -102,18 +112,19 @@ public class logInScreen {
     }
 
     public static void main(String[] args) {
-        new logInScreen();
+        new registerScreen();
     }
-    private boolean logowanie(String nick, String password)
+
+    private boolean czyWolnyLogin(String nick)
     {
-        boolean zalogowano = false;
+        boolean wolnyLogin = true;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
 
             while ((line = reader.readLine()) != null) {
                 String[] podzial = line.split(","); // Rozdzielanie na nick i hasło
-                if (podzial.length == 2 && podzial[0].equals(nick) && podzial[1].equals(password)) {
-                    zalogowano = true;
+                if (podzial[0].equals(nick)) {
+                    wolnyLogin = false;
                     break;
                 }
             }
@@ -121,7 +132,27 @@ public class logInScreen {
         } catch (IOException e) {
             System.err.println("Błąd podczas odczytu pliku: " + e.getMessage());
         }
-        return zalogowano;
+        return wolnyLogin;
+    }
+    private boolean rejestrowanie(String nick, String password, String password2)
+    {
+        if(!password.equals(password2) || password.isEmpty() || nick.isEmpty())
+        {
+            return false;
+        }
+
+        boolean udane = false;
+
+        try (FileWriter fw = new FileWriter(filePath, true);
+        PrintWriter writer = new PrintWriter(fw))
+        {
+            String zapisz = nick + "," + password;
+        writer.println(zapisz);
+        udane = true;
+    } catch (IOException e) {
+        e.printStackTrace(); // Obsługuje wyjątek w przypadku problemów z plikiem
+    }
+        return udane;
     }
 
     private Gracz wczytajGracza(String nick) throws FileNotFoundException {
@@ -141,9 +172,30 @@ public class logInScreen {
             e.printStackTrace();
         }
         return gracz;
-    }
 
-    private String hashowanie(char [] password) {
+    }
+    private void utworzNowegoGracza(String nick) {
+        Gracz nowyGracz = new Gracz(nick, 0);
+        try (RandomAccessFile raf = new RandomAccessFile(daneGraczy, "rw")) {
+            Map<String, Long> indeks;
+
+            File plikIndeksu = new File(listaGraczy);
+            if (plikIndeksu.exists()) {
+                indeks = Gracz.odczytajIndex(listaGraczy);
+            } else {
+                indeks = new HashMap<>();
+            }
+            Gracz.zapiszGracza(daneGraczy, indeks, nowyGracz);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+        private String hashowanie(char [] password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] zakodowanyHash = digest.digest(new String(password).getBytes());
