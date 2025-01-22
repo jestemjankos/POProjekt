@@ -33,7 +33,7 @@ public class mainMenu {
         saldoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(saldoLabel);
 
-        przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
+        /*przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
         przyciskZagraj.setFont(new Font("Arial", Font.PLAIN, 18));
         przyciskZagraj.setAlignmentX(Component.CENTER_ALIGNMENT);
         przyciskZagraj.addActionListener(new ActionListener() {
@@ -41,7 +41,7 @@ public class mainMenu {
                 new kolkoKrzyzyk();
                 frame.dispose();
             }
-        });
+        });*/
 
         przyciskBJ = new JButton("Zagraj w BlackJack'a ");
         przyciskBJ.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -72,8 +72,8 @@ public class mainMenu {
             }
         });
 
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        panel.add(przyciskZagraj);
+        //panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        //panel.add(przyciskZagraj);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(przyciskBJ);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
