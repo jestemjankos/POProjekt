@@ -32,8 +32,10 @@ public class ScoreBoard extends JPanel{
 
     public ScoreBoard(){
         scores[0][0] = new JLabel("");
-        scores[0][1] = new JLabel("Gracz");
-        //scores[0][2] = new JLabel("Komputer");
+        scores[0][0].setHorizontalAlignment(SwingConstants.CENTER);
+        scores[0][1] = new JLabel("");
+        scores[0][1].setHorizontalAlignment(SwingConstants.CENTER);
+
         scores[1][0] = new JLabel("Jedynki");
         scores[2][0] = new JLabel("Dwojki");
         scores[3][0] = new JLabel("Trojki");

@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class DiceGame implements ActionListener{
     private JFrame frame;
+    protected Gracz gracz;
     private JFrame frameSummary;
     private JPanel summaryPanel;
     public DicePanel panel;
@@ -23,7 +24,7 @@ public class DiceGame implements ActionListener{
     private boolean punktyZaDolnaCzescTabeli = true;
     StanGry stanGry = StanGry.PierwszyRzyt;
     public static void main(String[] args) {
-        new DiceGame();
+        new DiceGame(new Gracz("Nick", 100)); //usunąć nowego gracza, przekazać jako parametr z mainMenu
     }
     protected class mouseClickListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
@@ -156,7 +157,8 @@ public class DiceGame implements ActionListener{
     }
     }
     private mouseClickListener listener = new mouseClickListener();
-    public DiceGame() {
+    public DiceGame(Gracz gracz) {
+        this.gracz = gracz;
         pozostaleTury = 13;
         frame = new JFrame("Kości");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,6 +168,8 @@ public class DiceGame implements ActionListener{
         frame.setLayout(new BorderLayout());
         // Ustawienie układu
         scoreBoard = new ScoreBoard();
+        scoreBoard.scores[0][0].setText("Saldo: "+gracz.getSaldo());
+        scoreBoard.scores[0][1].setText(gracz.getImie());
         scoreBoard.setLayout(new GridLayout(scoreBoard.getRows(), scoreBoard.getCols()));
         scoreBoard.setBackground(Color.WHITE);
         scoreBoard.setPreferredSize(new Dimension(300, 100));
