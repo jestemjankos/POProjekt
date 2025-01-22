@@ -58,7 +58,7 @@ public class mainMenu {
         przyciskKosci.setAlignmentX(Component.CENTER_ALIGNMENT);
         przyciskKosci.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DiceGame(new Gracz("Nick", 100));
+                new DiceGame(gracz);
                 frame.dispose();
             }
         });
