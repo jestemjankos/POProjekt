@@ -41,7 +41,7 @@ public class kolkoKrzyzyk implements ActionListener{
 
 
 
-        przyciskCofnij = new JButton("Wróć");
+        przyciskCofnij = new JButton("Wróć do kasyna");
         przyciskCofnij.setFont(new Font("Arial", Font.PLAIN, 18));
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(przyciskCofnij);
