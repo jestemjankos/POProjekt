@@ -1,0 +1,419 @@
+Index: src/BlackJackGame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BlackJackGame.java b/src/BlackJackGame.java
+new file mode 100644
+--- /dev/null	(date 1737545558514)
++++ b/src/BlackJackGame.java	(date 1737545558514)
+@@ -0,0 +1,67 @@
++/*public class BlackJackGame {
++    private final Deck deck;
++    private final PlayerHand playerHand;
++    private final DealerHand dealerHand;
++    private final BlackJackUI ui;
++    private GameState currentState;
++
++    public BlackJackGame(BlackJackUI ui) {
++        this.deck = new Deck();
++        this.playerHand = new PlayerHand();
++        this.dealerHand = new DealerHand();
++        this.ui = ui;
++        setState(new InitialState());
++    }
++
++    public void setState(GameState state) {
++        if (currentState != null) {
++            currentState.onExit(this);
++        }
++        currentState = state;
++        currentState.onEnter(this);
++    }
++
++    public void startNewGame() {
++        deck.shuffle();
++        playerHand.clear();
++        dealerHand.clear();
++
++        dealerHand.setHiddenCard(deck.drawCard());
++        dealerHand.addCard(deck.drawCard());
++
++        playerHand.addCard(deck.drawCard());
++        playerHand.addCard(deck.drawCard());
++
++        setState(new InitialState());
++    }
++
++    // Game logic methods
++    public void handleHit() {
++        currentState.handleHit(this);
++    }
++
++    public void handleStay() {
++        currentState.handleStay(this);
++    }
++
++    public void handlePlay() {
++        currentState.handlePlay(this);
++    }
++
++    public void handleReplay() {
++        currentState.handleReplay(this);
++    }
++
++    // Getters
++    public PlayerHand getPlayerHand() {
++        return playerHand;
++    }
++
++    public DealerHand getDealerHand() {
++        return dealerHand;
++    }
++
++    public BlackJackUI getUI() {
++        return ui;
++    }
++}*/
+\ No newline at end of file
+Index: src/BlackJackUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BlackJackUI.java b/src/BlackJackUI.java
+new file mode 100644
+--- /dev/null	(date 1737545564410)
++++ b/src/BlackJackUI.java	(date 1737545564410)
+@@ -0,0 +1,10 @@
++public interface BlackJackUI {
++    void updateDisplay();
++    void setPlayButtonEnabled(boolean enabled);
++    void setHitButtonEnabled(boolean enabled);
++    void setStayButtonEnabled(boolean enabled);
++    void setReplayButtonEnabled(boolean enabled);
++    void showMessage(String message);
++}
++
++
+Index: src/DealerHand.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/DealerHand.java b/src/DealerHand.java
+new file mode 100644
+--- /dev/null	(date 1737545564437)
++++ b/src/DealerHand.java	(date 1737545564437)
+@@ -0,0 +1,26 @@
++public class DealerHand extends Hand {
++    private Card hiddenCard;
++
++    public void setHiddenCard(Card card) {
++        this.hiddenCard = card;
++        sum += card.getNumericalValue();
++        if (card.isAce()) {
++            aceCount++;
++        }
++        reduceAceValues();
++    }
++
++    public Card getHiddenCard() {
++        return hiddenCard;
++    }
++
++    public boolean shouldDrawCard() {
++        return sum < 17;
++    }
++
++    @Override
++    public void clear() {
++        super.clear();
++        hiddenCard = null;
++    }
++}
+\ No newline at end of file
+Index: src/Deck.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Deck.java b/src/Deck.java
+new file mode 100644
+--- /dev/null	(date 1737545564453)
++++ b/src/Deck.java	(date 1737545564453)
+@@ -0,0 +1,42 @@
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Random;
++
++public class Deck {
++    private final List<Card> cards;
++    private final Random random;
++
++    public Deck() {
++        cards = new ArrayList<>();
++        random = new Random();
++        build();
++    }
++
++    private void build() {
++        String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
++        String[] types = {"C", "D", "H", "S"};
++
++        for (String type : types) {
++            for (String value : values) {
++                cards.add(new Card(value, type));
++            }
++        }
++    }
++
++    public void shuffle() {
++        for (int i = 0; i < cards.size(); i++) {
++            int j = random.nextInt(cards.size());
++            Card temp = cards.get(i);
++            cards.set(i, cards.get(j));
++            cards.set(j, temp);
++        }
++    }
++
++    public Card drawCard() {
++        if (cards.isEmpty()) {
++            build();
++            shuffle();
++        }
++        return cards.remove(cards.size() - 1);
++    }
++}
+\ No newline at end of file
+Index: src/SwingBlackJackUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/SwingBlackJackUI.java b/src/SwingBlackJackUI.java
+new file mode 100644
+--- /dev/null	(date 1737545564421)
++++ b/src/SwingBlackJackUI.java	(date 1737545564421)
+@@ -0,0 +1,23 @@
++/*import javax.swing.*;
++import java.awt.*;
++
++public class SwingBlackJackUI implements BlackJackUI {
++    private final JFrame frame;
++    private final GamePanel gamePanel;
++    private final ButtonPanel buttonPanel;
++
++    private class GamePanel extends JPanel {
++        @Override
++        protected void paintComponent(Graphics g) {
++            super.paintComponent(g);
++            // Drawing logic here
++
++        }
++    }
++
++    private class ButtonPanel extends JPanel {
++        // Button initialization and layout
++    }
++
++    // Implementation of BlackJackUI methods
++}*/
+\ No newline at end of file
+Index: src/Card.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Card.java b/src/Card.java
+new file mode 100644
+--- /dev/null	(date 1737545564437)
++++ b/src/Card.java	(date 1737545564437)
+@@ -0,0 +1,40 @@
++public class Card {
++    private final String value;
++    private final String type;
++
++    public Card(String value, String type) {
++        this.value = value;
++        this.type = type;
++    }
++
++    public String getValue() {
++        return value;
++    }
++
++    public String getType() {
++        return type;
++    }
++
++    public int getNumericalValue() {
++        if ("AJQK".contains(value)) {
++            if (value.equals("A")) {
++                return 11;
++            }
++            return 10;
++        }
++        return Integer.parseInt(value);
++    }
++
++    public boolean isAce() {
++        return value.equals("A");
++    }
++
++    public String getImagePath() {
++        return "./karty/" + toString() + ".png";
++    }
++
++    @Override
++    public String toString() {
++        return value + "-" + type;
++    }
++}
+\ No newline at end of file
+Index: src/PlayingState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PlayingState.java b/src/PlayingState.java
+new file mode 100644
+--- /dev/null	(date 1737545564496)
++++ b/src/PlayingState.java	(date 1737545564496)
+@@ -0,0 +1,2 @@
++public class PlayingState {
++}
+Index: src/EndState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/EndState.java b/src/EndState.java
+new file mode 100644
+--- /dev/null	(date 1737545564496)
++++ b/src/EndState.java	(date 1737545564496)
+@@ -0,0 +1,2 @@
++public class EndState {
++}
+Index: src/Hand.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Hand.java b/src/Hand.java
+new file mode 100644
+--- /dev/null	(date 1737545564468)
++++ b/src/Hand.java	(date 1737545564468)
+@@ -0,0 +1,44 @@
++import java.util.ArrayList;
++import java.util.List;
++
++public abstract class Hand {
++    protected List<Card> cards;
++    protected int sum;
++    protected int aceCount;
++
++    public Hand() {
++        cards = new ArrayList<>();
++        sum = 0;
++        aceCount = 0;
++    }
++
++    public void addCard(Card card) {
++        cards.add(card);
++        sum += card.getNumericalValue();
++        if (card.isAce()) {
++            aceCount++;
++        }
++        reduceAceValues();
++    }
++
++    public List<Card> getCards() {
++        return cards;
++    }
++
++    public int getSum() {
++        return sum;
++    }
++
++    protected void reduceAceValues() {
++        while (sum > 21 && aceCount > 0) {
++            sum -= 10;
++            aceCount--;
++        }
++    }
++
++    public void clear() {
++        cards.clear();
++        sum = 0;
++        aceCount = 0;
++    }
++}
+\ No newline at end of file
+Index: src/PlayerHand.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PlayerHand.java b/src/PlayerHand.java
+new file mode 100644
+--- /dev/null	(date 1737545564481)
++++ b/src/PlayerHand.java	(date 1737545564481)
+@@ -0,0 +1,5 @@
++public class PlayerHand extends Hand {
++    public boolean isBust() {
++        return sum > 21;
++    }
++}
+\ No newline at end of file
+Index: src/GameState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GameState.java b/src/GameState.java
+new file mode 100644
+--- /dev/null	(date 1737545564512)
++++ b/src/GameState.java	(date 1737545564512)
+@@ -0,0 +1,8 @@
++/*public interface GameState {
++    void onEnter(BlackJackGame game);
++    void onExit(BlackJackGame game);
++    void handleHit(BlackJackGame game);
++    void handleStay(BlackJackGame game);
++    void handlePlay(BlackJackGame game);
++    void handleReplay(BlackJackGame game);
++}*/
+\ No newline at end of file
+Index: src/InitialState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/InitialState.java b/src/InitialState.java
+new file mode 100644
+--- /dev/null	(date 1737545564528)
++++ b/src/InitialState.java	(date 1737545564528)
+@@ -0,0 +1,21 @@
++/*public class InitialState implements GameState {
++    @Override
++    public void onEnter(BlackJackGame game) {
++        game.getUI().setPlayButtonEnabled(true);
++        game.getUI().setHitButtonEnabled(false);
++        game.getUI().setStayButtonEnabled(false);
++        game.getUI().setReplayButtonEnabled(false);
++    }
++
++    @Override
++    public void onExit(BlackJackGame game) {
++        // Implementation
++    }
++
++    @Override
++    public void handlePlay(BlackJackGame game) {
++        game.setState(new PlayingState());
++    }
++
++    // Other method implementations
++}*/
+\ No newline at end of file

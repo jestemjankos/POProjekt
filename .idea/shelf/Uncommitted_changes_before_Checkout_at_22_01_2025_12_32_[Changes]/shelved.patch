@@ -1,0 +1,68 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b521ed67-1063-4a55-a372-32ae2573f1e4\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/BlackJack.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/krupier.png\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BlackjackFrame.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BlackjackFrame.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/kolkoKrzyzyk.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/kolkoKrzyzyk.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"kosci\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2qqrNEpT59PGsAW3jFjTYEl05w1\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.BlackJack.executor\": \"Run\",\r\n    \"Application.BlackjackFrame.executor\": \"Run\",\r\n    \"Application.kolkoKrzyzyk.executor\": \"Run\",\r\n    \"Application.mainMenu.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"bj\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/macie/IdeaProjects/projektPO/src/Main.java\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Użytkownik\\Documents\\GitHub\\POProjekt\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b521ed67-1063-4a55-a372-32ae2573f1e4\" name=\"Changes\" comment=\"\" />\r\n      <created>1735400905548</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1735400905548</updated>\r\n      <workItem from=\"1735400906617\" duration=\"1000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/Main.java</url>\r\n          <line>11</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5211e1dd1cfc3cb0cc5a9ecf68b5e38baeb04725)
++++ b/.idea/workspace.xml	(date 1737544995498)
+@@ -5,11 +5,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/BlackJack.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/krupier.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/BlackjackFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackjackFrame.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/BlackJackGame.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/BlackJackUI.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/DealerHand.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/EndState.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/GameState.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Hand.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/InitialState.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/PlayerHand.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/PlayingState.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/SwingBlackJackUI.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -42,20 +49,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.BlackJack.executor": "Run",
+-    "Application.BlackjackFrame.executor": "Run",
+-    "Application.kolkoKrzyzyk.executor": "Run",
+-    "Application.mainMenu.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "bj",
+-    "kotlin-language-version-configured": "true",
+-    "nodejs_package_manager_path": "npm",
+-    "onboarding.tips.debug.path": "C:/Users/macie/IdeaProjects/projektPO/src/Main.java",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.BlackJack.executor&quot;: &quot;Run&quot;,
++    &quot;Application.BlackjackFrame.executor&quot;: &quot;Run&quot;,
++    &quot;Application.kolkoKrzyzyk.executor&quot;: &quot;Run&quot;,
++    &quot;Application.mainMenu.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;bj&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/macie/IdeaProjects/projektPO/src/Main.java&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Użytkownik\Documents\GitHub\POProjekt\src" />

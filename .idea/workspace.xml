@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/BlackJack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/krupier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DealerHand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Hand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICardContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PlayerHand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackjackFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackjackFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kolkoKrzyzyk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackJack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackJack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -49,6 +54,7 @@
     "Application.kolkoKrzyzyk.executor": "Run",
     "Application.mainMenu.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "bj",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
