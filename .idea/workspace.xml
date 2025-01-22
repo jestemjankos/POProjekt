@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/mainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DealerHand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Hand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICardContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PlayerHand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackJack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackJack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +24,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="kosci" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -35,40 +49,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.DiceGam.executor": "Run",
-    "Application.DiceGame.executor": "Run",
-    "Application.LoginScreen.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.RegisterScreen.executor": "Run",
+    "Application.BlackJack.executor": "Run",
+    "Application.BlackjackFrame.executor": "Run",
     "Application.kolkoKrzyzyk.executor": "Run",
-    "Application.logInScreen.executor": "Run",
     "Application.mainMenu.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "bj",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jaex/IdeaProjects/Proj1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/macie/IdeaProjects/projektPO/src/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
-      </set>
-    </attachedChunks>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Użytkownik\Documents\GitHub\POProjekt\src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -79,23 +76,17 @@
       <option name="presentableId" value="Default" />
       <updated>1735400905548</updated>
       <workItem from="1735400906617" duration="1000" />
-      <workItem from="1736373351595" duration="296000" />
-      <workItem from="1736373690563" duration="1169000" />
-      <workItem from="1736418277289" duration="19264000" />
-      <workItem from="1737395883549" duration="14527000" />
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.awt.AWTError" package="java.awt" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
