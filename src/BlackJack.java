@@ -261,6 +261,7 @@ public class BlackJack {
         replayButton.setEnabled(true);
         wrocButton.setEnabled(true);
         gamePanel.repaint();
+        playButton.setEnabled(false);
     }
 
     private void updateButtonStates(boolean duringGame) {
