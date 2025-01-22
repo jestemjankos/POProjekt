@@ -120,8 +120,7 @@ public class mainMenu {
 
         }
         // Przyklad: Utworzenie obiektu Gracz i otwarcie menu
-        Gracz gracz = new Gracz("Player1", 1000);
-        new mainMenu(gracz);
+        new mainMenu();
     }
 }
 

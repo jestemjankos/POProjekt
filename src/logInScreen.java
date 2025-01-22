@@ -21,7 +21,7 @@ public class logInScreen {
     public logInScreen() {
         frame = new JFrame("Logowanie - Kasyno BETA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 310);
+        frame.setSize(400, 340);
         frame.setLocationRelativeTo(null);
 
         panel = new JPanel();
