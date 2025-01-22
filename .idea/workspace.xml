@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/logInScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DiceGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoreBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +43,7 @@
     "Application.Main.executor": "Run",
     "Application.RegisterScreen.executor": "Run",
     "Application.kolkoKrzyzyk.executor": "Run",
+    "Application.logInScreen.executor": "Run",
     "Application.mainMenu.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -84,8 +84,7 @@
       <workItem from="1736373351595" duration="296000" />
       <workItem from="1736373690563" duration="1169000" />
       <workItem from="1736418277289" duration="19264000" />
-      <workItem from="1737395883549" duration="15841000" />
-      <workItem from="1737552850326" duration="17767000" />
+      <workItem from="1737395883549" duration="14527000" />
     </task>
     <servers />
   </component>
@@ -99,20 +98,6 @@
           <properties class="java.awt.AWTError" package="java.awt" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DiceGame.java</url>
-          <line>259</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/DiceGame.java</url>
-          <line>159</line>
-          <properties class="DiceGame" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
