@@ -12,6 +12,7 @@ public class mainMenu {
     public JButton przyciskBJ;
     public JButton przyciskKosci;
     public JButton przyciskWyjdz;
+    public JButton przyciskDoladuj;
 
     public mainMenu(Gracz gracz) {
         this.gracz = gracz; // Przypisanie gracza do pola
@@ -33,15 +34,16 @@ public class mainMenu {
         saldoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(saldoLabel);
 
-        /*przyciskZagraj = new JButton("Zagraj w Kołko i Krzyżyk");
-        przyciskZagraj.setFont(new Font("Arial", Font.PLAIN, 18));
-        przyciskZagraj.setAlignmentX(Component.CENTER_ALIGNMENT);
-        przyciskZagraj.addActionListener(new ActionListener() {
+        // Przycisk "Doładuj saldo"
+        przyciskDoladuj = new JButton("Doładuj saldo (+1000 PLN)");
+        przyciskDoladuj.setFont(new Font("Arial", Font.PLAIN, 18));
+        przyciskDoladuj.setAlignmentX(Component.CENTER_ALIGNMENT);
+        przyciskDoladuj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new kolkoKrzyzyk();
-                frame.dispose();
+                gracz.dodajSaldo(1000); // Dodanie 1000 PLN do salda
+                saldoLabel.setText("Saldo: " + gracz.getSaldo() + " PLN"); // Aktualizacja etykiety salda
             }
-        });*/
+        });
 
         przyciskBJ = new JButton("Zagraj w BlackJack'a ");
         przyciskBJ.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -72,9 +74,10 @@ public class mainMenu {
             }
         });
 
-        //panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        //panel.add(przyciskZagraj);
+        // Dodanie przycisku doładowania salda
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(przyciskDoladuj);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(przyciskBJ);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(przyciskKosci);
@@ -92,32 +95,14 @@ public class mainMenu {
     public static void main(String[] args) {
         for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 
-            //System.out.println(info + " - " + info.getName()); //wy�wietlenie dost�pnych opcji!
-
-            //ustawienie Nimbus
-
             if ("Nimbus".equals(info.getName())) {
-
                 try {
-
                     UIManager.setLookAndFeel(info.getClassName());
-
-                } catch (ClassNotFoundException | InstantiationException
-
-                         | IllegalAccessException
-
-                         | UnsupportedLookAndFeelException e) {
-
-                    // TODO Auto-generated catch block
-
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
                     e.printStackTrace();
-
                 }
-
                 break;
-
             }
-
         }
         // Przyklad: Utworzenie obiektu Gracz i otwarcie menu
         new mainMenu();
