@@ -42,6 +42,7 @@ public class mainMenu {
             public void actionPerformed(ActionEvent e) {
                 gracz.dodajSaldo(1000); // Dodanie 1000 PLN do salda
                 saldoLabel.setText("Saldo: " + gracz.getSaldo() + " PLN"); // Aktualizacja etykiety salda
+                gracz.aktualizuj();
             }
         });
 

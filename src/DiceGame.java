@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class DiceGame implements ActionListener{
     private JFrame frame;
     protected Gracz gracz;
-    private final int MAX_TURY = 2;
+    private final int MAX_TURY = 14;
     private JFrame frameSummary;
     private JPanel summaryPanel;
     public DicePanel panel;
@@ -212,7 +212,7 @@ public class DiceGame implements ActionListener{
             panel.rollButton.addActionListener(this);
             panel.powrot.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    new mainMenu();
+                    new mainMenu(gracz);
                     frame.dispose();
                 }
             });
@@ -300,7 +300,7 @@ public class DiceGame implements ActionListener{
                         "Udało ci się uzyskać " + scoreBoard.calkowityWynik + "/60 punktów\n"+endMessage;
 
                 JOptionPane.showMessageDialog(frame, msg, "Podsumowanie", JOptionPane.INFORMATION_MESSAGE);
-                new DiceGame(gracz);
+                new mainMenu(gracz);
                 frame.dispose();
             }
 

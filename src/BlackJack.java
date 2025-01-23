@@ -8,6 +8,7 @@ public class BlackJack {
     private final Deck deck;
     private final DealerHand dealerHand;
     private final PlayerHand playerHand;
+    private Gracz gracz;
 
     private final int boardWidth = 800;
     private final int boardHeight = 600;
@@ -26,7 +27,8 @@ public class BlackJack {
     private final JButton replayButton;
     private final JButton wrocButton;
 
-    public BlackJack() {
+    public BlackJack(Gracz gracz) {
+        this.gracz = gracz;
         deck = new Deck();
         dealerHand = new DealerHand();
         playerHand = new PlayerHand();
@@ -155,6 +157,12 @@ public class BlackJack {
             g.setFont(new Font("Arial", Font.PLAIN, 30));
             g.setColor(Color.white);
             g.drawString(message, 220, 250);
+
+            if(message.equals("You Win!"))
+            {
+                gracz.setSaldo(gracz.getSaldo() + 200);
+                gracz.aktualizuj();
+            }
         }
     }
 
@@ -218,11 +226,12 @@ public class BlackJack {
     }
 
     private void handleWroc() {
-        new mainMenu();
+        new mainMenu(gracz);
         frame.dispose();
     }
 
     private void handlePlay() {
+
         gameStarted = true;
         playerCardsRevealed = true;
         updateButtonStates(true);
@@ -230,22 +239,32 @@ public class BlackJack {
     }
 
     private void startGame() {
-        deck.reset();
-        dealerHand.reset();
-        playerHand.reset();
+        if(gracz.getSaldo() < 100)
+        {
+            String brakSrodkow = "Niewystarczające środki, aby zagrać w tą grę. Proszę doładować saldo w menu głównym.";
 
-        // Deal initial cards
-        dealerHand.addCard(deck.drawCard());
-        dealerHand.setHiddenCard(deck.drawCard());
+            JOptionPane.showMessageDialog(frame, brakSrodkow, "Niewysratczające środki!", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            gracz.setSaldo(gracz.getSaldo() - 100);
+            gracz.aktualizuj();
 
-        playerHand.addCard(deck.drawCard());
-        playerHand.addCard(deck.drawCard());
+            deck.reset();
+            dealerHand.reset();
+            playerHand.reset();
 
-        gameStarted = false;
-        gameEnded = false;
-        playerCardsRevealed = false;
+            // Deal initial cards
+            dealerHand.addCard(deck.drawCard());
+            dealerHand.setHiddenCard(deck.drawCard());
 
-        updateButtonStates(false);
+            playerHand.addCard(deck.drawCard());
+            playerHand.addCard(deck.drawCard());
+
+            gameStarted = false;
+            gameEnded = false;
+            playerCardsRevealed = false;
+
+            updateButtonStates(false);
+        }
     }
 
     private void resetGame() {

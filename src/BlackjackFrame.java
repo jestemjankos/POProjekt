@@ -27,7 +27,7 @@ public class BlackjackFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Uruchomienie gry
-                blackJack = new BlackJack();
+                blackJack = new BlackJack(gracz);
                 dispose();  // Zamknięcie okna obecnego
             }
         });
@@ -36,7 +36,7 @@ public class BlackjackFrame extends JFrame {
         wrocButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new mainMenu();  // Przejście do menu głównego
+                new mainMenu(gracz);  // Przejście do menu głównego
                 dispose();  // Zamknięcie obecnego okna
             }
         });
