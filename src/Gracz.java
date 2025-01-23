@@ -1,5 +1,6 @@
 import java.io.*;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -81,7 +82,23 @@ public class Gracz implements Serializable {
             return (Map<String, Long>) ois.readObject();
         }
     }
+    public void aktualizuj()
+    {
+        try (RandomAccessFile raf = new RandomAccessFile("src/daneGraczy.bin", "rw")) {
+            Map<String, Long> indeks;
 
+            File plikIndeksu = new File("src/listaGraczy.bin");
+            if (plikIndeksu.exists()) {
+                indeks = Gracz.odczytajIndex("src/listaGraczy.bin");
+            } else {
+                indeks = new HashMap<>();
+            }
+
+            Gracz.zapiszGracza("src/daneGraczy.bin", indeks, this);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     public String toString() {
         return "Gracz{" +
                 "imie='" + imie + '\'' +

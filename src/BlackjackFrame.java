@@ -8,14 +8,15 @@ public class BlackjackFrame extends JFrame {
     private JButton rozpocznijGręButton;
     private JButton zasadyButton;
     private BlackJack blackJack;
+    private Gracz gracz;
 
-    public BlackjackFrame() {
+    public BlackjackFrame(Gracz gracz) {
         setTitle("Blackjack");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-
+        this.gracz = gracz;
         // Inicjalizowanie przycisków
         wrocButton = new JButton("Wróć do kasyna");
         rozpocznijGręButton = new JButton("Rozpocznij grę");
@@ -74,6 +75,6 @@ public class BlackjackFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        new BlackjackFrame(); // Uruchomienie głównego okna
+        new BlackjackFrame(new Gracz("TEST", 100)); // Uruchomienie głównego okna
     }
 }

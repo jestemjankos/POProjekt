@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class DiceGame implements ActionListener{
     private JFrame frame;
     protected Gracz gracz;
+    private final int MAX_TURY = 2;
     private JFrame frameSummary;
     private JPanel summaryPanel;
     public DicePanel panel;
@@ -159,52 +160,85 @@ public class DiceGame implements ActionListener{
     private mouseClickListener listener = new mouseClickListener();
     public DiceGame(Gracz gracz) {
         this.gracz = gracz;
-        pozostaleTury = 13;
-        frame = new JFrame("Kości");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(1500, 800);
-        frame.setLocationRelativeTo(null); // Wyśrodkowanie okna na ekranie
-        frame.setLayout(new BorderLayout());
-        // Ustawienie układu
-        scoreBoard = new ScoreBoard();
-        scoreBoard.scores[0][0].setText("Saldo: "+gracz.getSaldo());
-        scoreBoard.scores[0][1].setText(gracz.getImie());
-        scoreBoard.setLayout(new GridLayout(scoreBoard.getRows(), scoreBoard.getCols()));
-        scoreBoard.setBackground(Color.WHITE);
-        scoreBoard.setPreferredSize(new Dimension(300, 100));
-        scoreBoard.setListeners(listener);
+        if(gracz.getSaldo() < 50)
+        {
+            String brakSrodkow = "Niewystarczające środki, aby zagrać w tą grę. Proszę doładować saldo w menu głównym.";
 
-        panel = new DicePanel(400, 250);
-        panel.setPreferredSize(new Dimension(900, 800));
-        panel.setBackground(Color.GRAY);
-        panel.rollButton.addActionListener(this);
-        panel.powrot.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new mainMenu();
-                frame.dispose();
-            }
-        });
-        panel.rerollButton.addActionListener(this);
-        timer = new Timer(10, panel); // co 0.01s
+            JOptionPane.showMessageDialog(frame, brakSrodkow, "Niewysratczające środki!", JOptionPane.INFORMATION_MESSAGE);
+            new mainMenu(gracz);
+        }else {
+            gracz.setSaldo(gracz.getSaldo() - 50);
+            gracz.aktualizuj();
 
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scoreBoard, panel);
-        splitPane.setDividerLocation(0.3);
-        splitPane.setResizeWeight(0.3);
-        splitPane.setContinuousLayout(true);
-        splitPane.setDividerSize(0);
+            String zasady = "Zasady gry w Kości:\n\n" +
+                    "Gra składa się z 13 rund, w każdej rundzie można rzucić kośćmi trzykrotnie." +
+                    "Po pierwszym rzucie, kliknij na kości, które chcesz zachować.\n" +
+                    "Kości pozostawione na stole zostaną rzucone ponownie.\n" +
+                    "Na końcu każdej rundy, zaznacz w tabeli pola, za które chcesz dostać punkty z tej rundy.\n" +
+                    "Punktacja: \n" +
+                    "Jedynki: suma wszystkich wyrzuconych jedynek\n" +
+                    "Dwójki: suma wszystkich wyrzuconych dwójek\n" +
+                    "Trójki: suma wszystkich wyrzuconych trójek\n" +
+                    "Czwórki: suma wszystkich wyrzuconych czwórek\n" +
+                    "Piątki: suma wszystkich wyrzuconych piątek\n" +
+                    "Szóstki: suma wszystkich wyrzuconych szóstek\n" +
+                    "Trzy jednakowe: wyrzucono 3 jednakowe kości - suma oczek wszystkich kości\n" +
+                    "Cztery jednakowe: wyrzucono 4 jednakowe kości - suma oczek wszystkich kości\n" +
+                    "Full: wyrzucono 3 jednakowe kości i parę - 25 punktów\n" +
+                    "Mały strit: wyrzucono cztery kolejne kości (np. 1,2,3,4) - 30 punktów\n" +
+                    "Duży strit: wyrzucono pięć kolejnych kości (np. 2,3,4,5,6) - 40 punktów\n" +
+                    "Generał: wyrzucono pięć jednakowych kości - 50 punktów\n";
 
-        frame.add(splitPane);
+            JOptionPane.showMessageDialog(frame, zasady, "Zasady gry", JOptionPane.INFORMATION_MESSAGE);
+            pozostaleTury = MAX_TURY;
+            frame = new JFrame("Kości");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            frame.setSize(1500, 800);
+            frame.setLocationRelativeTo(null); // Wyśrodkowanie okna na ekranie
+            frame.setLayout(new BorderLayout());
+            // Ustawienie układu
+            scoreBoard = new ScoreBoard();
+            scoreBoard.scores[0][0].setText("Saldo: " + gracz.getSaldo());
+            scoreBoard.scores[0][1].setText(gracz.getImie());
+            scoreBoard.setLayout(new GridLayout(scoreBoard.getRows(), scoreBoard.getCols()));
+            scoreBoard.setBackground(Color.WHITE);
+            scoreBoard.setPreferredSize(new Dimension(300, 100));
+            scoreBoard.setListeners(listener);
 
-        frame.setVisible(true);
-        frame.setResizable(false);
+            panel = new DicePanel(400, 250);
+            panel.setPreferredSize(new Dimension(900, 800));
+            panel.setBackground(Color.GRAY);
+            panel.rollButton.addActionListener(this);
+            panel.powrot.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    new mainMenu();
+                    frame.dispose();
+                }
+            });
+            panel.rerollButton.addActionListener(this);
+            timer = new Timer(10, panel); // co 0.01s
+
+            splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scoreBoard, panel);
+            splitPane.setDividerLocation(0.3);
+            splitPane.setResizeWeight(0.3);
+            splitPane.setContinuousLayout(true);
+            splitPane.setDividerSize(0);
+
+            frame.add(splitPane);
+
+            frame.setVisible(true);
+            frame.setResizable(false);
+            resetujStanGry();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton source = (JButton) e.getSource();
+
         panel.aktualizujPodejscia((rerols-1 == -1) ? 3 : rerols - 1);
-        //System.out.println(Arrays.toString(panel.ostateczneWartosci));
+        System.out.println(Arrays.toString(panel.ostateczneWartosci));
         if(panel.ostateczneWartosciIndex == 5) //wszystkie kości zostały zachowane
         {
             rerols = 0; //przejdź do podsumowania
@@ -213,7 +247,7 @@ public class DiceGame implements ActionListener{
         {
             panel.pokazKubek();
             timer.start();
-            source.setText("STOP");
+            source.setText("Stop");
             panel.ukryjKosci();
             panel.stanKubka = false;
         }else if(e.getSource() == panel.rerollButton && rerols > 1)
@@ -222,9 +256,7 @@ public class DiceGame implements ActionListener{
             rerols--;
             timer.stop();
             panel.pokazKosci(false);
-            source.setText("REROLL");
-            //punkty = panel.podliczPunkty();
-            //podliczPunkty();
+            source.setText("Reroll");
             panel.stanKubka = true;
             //kostka1.setBounds(xPos + 20, yPos + 210, 30, 30); //poprawne ustawienie miejsca kostek odmawia współpracy
         }else if(e.getSource() == panel.rerollButton && rerols == 1)
@@ -233,9 +265,7 @@ public class DiceGame implements ActionListener{
             rerols--;
             timer.stop();
             panel.pokazKosci(true);
-            source.setText("REROLL");
-            //punkty = panel.podliczPunkty();
-            //podliczPunkty();
+            source.setText("Reroll");
             panel.stanKubka = true;
         }else if (e.getSource() == panel.rerollButton && panel.stanKubka && rerols <= 0) //koniec rollowania, przejdz do zapisu punktów
         {
@@ -248,6 +278,7 @@ public class DiceGame implements ActionListener{
 
         if (e.getSource() == panel.rollButton) {
             resetujStanGry();
+            //scoreBoard.wygasTabele(0, 13);
             rerols = 3;
             source.setVisible(false);
             panel.rerollButton.setVisible(true);
@@ -255,18 +286,22 @@ public class DiceGame implements ActionListener{
             panel.aktualizujRundy((pozostaleTury-1 == -1) ? 3 : pozostaleTury - 1);
             if(pozostaleTury == 0)
             {
-                panel.setVisible(false);
-                /*
-                frame.setVisible(false);
-                frameSummary = new JFrame("Podsumowanie");
-                frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                frame.setSize(500, 400);
-                frame.setLocationRelativeTo(null);
-                frame.setLayout(new BorderLayout());
+                String endMessage;
+                if(scoreBoard.calkowityWynik >= 60)
+                {
+                    endMessage = "Wygrałeś 100 żetonów!";
+                }else
+                {
+                    endMessage = "Przegrałeś, otrzymujesz 0 żetonów";
+                }
 
-                summaryPanel = new JPanel(new BorderLayout());
 
-                 */
+                String msg = "Podsumowanie\n\n" +
+                        "Udało ci się uzyskać " + scoreBoard.calkowityWynik + "/60 punktów\n"+endMessage;
+
+                JOptionPane.showMessageDialog(frame, msg, "Podsumowanie", JOptionPane.INFORMATION_MESSAGE);
+                new DiceGame(gracz);
+                frame.dispose();
             }
 
             if (panel.stanKubka && pozostaleTury > 0) {
@@ -360,12 +395,13 @@ public class DiceGame implements ActionListener{
     }
     private void resetujStanGry()
     {
-        rerols = 3;
+        //pozostaleTury = MAX_TURY;
         stanGry = StanGry.PierwszyRzyt;
         punktuZaGornaCzescTabeli = true;
         punktyZaDolnaCzescTabeli = true;
         panel.pokazKubek();
         scoreBoard.wygasTabele(0, 13);
+        //scoreBoard.wyzerujTabele();
         for(int i = 0; i < 13; i++)
         {
             punkty[i] = 0;

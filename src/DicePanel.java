@@ -69,7 +69,7 @@ public class DicePanel extends JPanel implements ActionListener {
 
 
         rollButton = new JButton("Rzuć kośćmi");
-        rerollButton = new JButton("STOP");
+        rerollButton = new JButton("Stop");
         rerollChances = new JLabel("");
         powrot = new JButton("Powrót");
 
@@ -221,9 +221,14 @@ public class DicePanel extends JPanel implements ActionListener {
     {
         ostateczneWartosciIndex = 0;
         kosciWGrze = 5;
+        rollButton.setVisible(true);
+        rollButton.setText("Rzuć kości");
+        rerollButton.setVisible(false);
+        rerollButton.setText("Stop");
         for(int i = 0; i < kosciWGrze; i++)
         {
             kostki[i].setAktywna(true);
+            kostki[i].setVisible(false);
         }
     }
     public void ukryjKubek()

@@ -103,4 +103,11 @@ public class ScoreBoard extends JPanel{
             scores[i][1].repaint();
         }
     }
+    public void wyzerujTabele()
+    {
+        for(int i = 1; i < rows; i++)
+        {
+            scores[i][1].setText("");
+        }
+    }
 }

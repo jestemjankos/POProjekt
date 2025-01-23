@@ -48,7 +48,7 @@ public class mainMenu {
         przyciskBJ.setAlignmentX(Component.CENTER_ALIGNMENT);
         przyciskBJ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BlackjackFrame();
+                new BlackjackFrame(gracz);
                 frame.dispose();
             }
         });
