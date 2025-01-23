@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class DiceGame implements ActionListener{
     private JFrame frame;
     protected Gracz gracz;
-    private final int MAX_TURY = 14;
+    private final int MAX_TURY = 13;
     private JFrame frameSummary;
     private JPanel summaryPanel;
     public DicePanel panel;
@@ -191,6 +191,7 @@ public class DiceGame implements ActionListener{
 
             JOptionPane.showMessageDialog(frame, zasady, "Zasady gry", JOptionPane.INFORMATION_MESSAGE);
             pozostaleTury = MAX_TURY;
+
             frame = new JFrame("Kości");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -229,6 +230,9 @@ public class DiceGame implements ActionListener{
 
             frame.setVisible(true);
             frame.setResizable(false);
+
+            panel.aktualizujRundy(pozostaleTury);
+            panel.aktualizujPodejscia(rerols);
             resetujStanGry();
         }
     }
@@ -245,6 +249,7 @@ public class DiceGame implements ActionListener{
         }
         if (e.getSource() == panel.rerollButton && rerols > 0 && panel.stanKubka)
         {
+            rerols--;
             panel.pokazKubek();
             timer.start();
             source.setText("Stop");
@@ -253,7 +258,7 @@ public class DiceGame implements ActionListener{
         }else if(e.getSource() == panel.rerollButton && rerols > 1)
         {
             panel.ukryjKubek();
-            rerols--;
+            //rerols--;
             timer.stop();
             panel.pokazKosci(false);
             source.setText("Reroll");
@@ -265,11 +270,14 @@ public class DiceGame implements ActionListener{
             rerols--;
             timer.stop();
             panel.pokazKosci(true);
-            source.setText("Reroll");
-            panel.stanKubka = true;
+            source.setText("Zapisz punkty");
+            panel.stanKubka = true;;
+            panel.wylaczKosci();
         }else if (e.getSource() == panel.rerollButton && panel.stanKubka && rerols <= 0) //koniec rollowania, przejdz do zapisu punktów
         {
             source.setVisible(false);
+            panel.pokazKosci(true);
+            panel.przywrocKosci();
             podliczPunkty();
             panel.rollButton.setVisible(true);
             stanGry = StanGry.ZapisPunktow;
@@ -277,48 +285,7 @@ public class DiceGame implements ActionListener{
         }
 
         if (e.getSource() == panel.rollButton) {
-            resetujStanGry();
-            //scoreBoard.wygasTabele(0, 13);
-            rerols = 3;
-            source.setVisible(false);
-            panel.rerollButton.setVisible(true);
-            pozostaleTury--;
-            panel.aktualizujRundy((pozostaleTury-1 == -1) ? 3 : pozostaleTury - 1);
-            if(pozostaleTury == 0)
-            {
-                String endMessage;
-                if(scoreBoard.calkowityWynik >= 60)
-                {
-                    endMessage = "Wygrałeś 100 żetonów!";
-                }else
-                {
-                    endMessage = "Przegrałeś, otrzymujesz 0 żetonów";
-                }
-
-
-                String msg = "Podsumowanie\n\n" +
-                        "Udało ci się uzyskać " + scoreBoard.calkowityWynik + "/60 punktów\n"+endMessage;
-
-                JOptionPane.showMessageDialog(frame, msg, "Podsumowanie", JOptionPane.INFORMATION_MESSAGE);
-                new mainMenu(gracz);
-                frame.dispose();
-            }
-
-            if (panel.stanKubka && pozostaleTury > 0) {
-                stanGry = StanGry.WTrakcieRerolli;
-                panel.pokazKubek();
-                timer.start();
-                panel.ukryjKosci();
-                panel.stanKubka = false;
-            }/*else if(pozostaleTury > 0)
-            {
-                timer.stop();
-                panel.pokazKosci(false);
-                //punkty = panel.podliczPunkty();
-                //podliczPunkty();
-                panel.stanKubka = true;
-                //kostka1.setBounds(xPos + 20, yPos + 210, 30, 30); //poprawne ustawienie miejsca kostek odmawia współpracy
-            }*/
+            pierwszyRzutWRundzie();
         }
     }
 
@@ -345,7 +312,7 @@ public class DiceGame implements ActionListener{
         punkty[12] = suma;
         int pierwszaWartosc = wartosci[0];
         for (int i = 1; i < 5; i++) {
-            if(wartosci[i] != wartosci[i-1])
+            if(wartosci[i] != wartosci[i-1] + 1)
             {
                 duzyStrit = false;
             }
@@ -356,7 +323,7 @@ public class DiceGame implements ActionListener{
                 {
                     czyMalyStrit = true;
                 }
-            }else
+            }else if(wartosci[i] != wartosci[i-1])
             {
                 malyStrit = 1;
             }
@@ -407,6 +374,43 @@ public class DiceGame implements ActionListener{
             punkty[i] = 0;
         }
         panel.resetujStanGry();
+    }
+    private void pierwszyRzutWRundzie()
+    {
+            if(pozostaleTury <= 0)
+            {
+                String endMessage;
+                if(scoreBoard.calkowityWynik >= 100)
+                {
+                    endMessage = "Wygrałeś 100 żetonów!";
+                }else
+                {
+                    endMessage = "Przegrałeś, otrzymujesz 0 żetonów";
+                }
+
+
+                String msg = "Podsumowanie\n\n" +
+                        "Udało ci się uzyskać " + scoreBoard.calkowityWynik + "/100 punktów\n"+endMessage;
+
+                JOptionPane.showMessageDialog(frame, msg, "Podsumowanie", JOptionPane.INFORMATION_MESSAGE);
+                new mainMenu(gracz);
+                frame.dispose();
+            }
+
+            if (panel.stanKubka && pozostaleTury > 0) {
+                pozostaleTury--;
+                resetujStanGry();
+                rerols = 3;
+                panel.rollButton.setVisible(false);
+                panel.rerollButton.setVisible(true);
+                panel.aktualizujRundy(pozostaleTury);
+                stanGry = StanGry.WTrakcieRerolli;
+                panel.pokazKubek();
+                timer.start();
+                panel.ukryjKosci();
+                panel.stanKubka = false;
+            }
+
     }
 }
 

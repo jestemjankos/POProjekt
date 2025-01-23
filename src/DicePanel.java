@@ -200,12 +200,13 @@ public class DicePanel extends JPanel implements ActionListener {
             for(int i = ostateczneWartosciIndex; i < 5; i++)
             {
                 ostateczneWartosci[i] = kostki[i-ostateczneWartosciIndex].getSciana();
+                kostki[i].setVisible(true);
             }
-        }
-        for (int i = 0; i < kosciWGrze; i++)
-        {
-            kostki[i].losuj();
-            kostki[i].setVisible(true);
+        }else {
+            for (int i = 0; i < kosciWGrze; i++) {
+                kostki[i].losuj();
+                kostki[i].setVisible(true);
+            }
         }
     }
     public void przywrocKosci()
