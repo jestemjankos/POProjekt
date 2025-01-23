@@ -7,9 +7,6 @@
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DiceGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DicePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DicePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daneGraczy.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/daneGraczy.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listaGraczy.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/listaGraczy.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735400905548</updated>
       <workItem from="1735400906617" duration="1000" />
-      <workItem from="1737619733478" duration="3099000" />
+      <workItem from="1737619733478" duration="3671000" />
     </task>
     <servers />
   </component>

@@ -390,7 +390,7 @@ public class DiceGame implements ActionListener{
 
 
                 String msg = "Podsumowanie\n\n" +
-                        "Udało ci się uzyskać " + scoreBoard.calkowityWynik + "/100 punktów\n"+endMessage;
+                        "Udało ci się uzyskać " + scoreBoard.calkowityWynik + " punktów\n"+endMessage;
 
                 JOptionPane.showMessageDialog(frame, msg, "Podsumowanie", JOptionPane.INFORMATION_MESSAGE);
                 new mainMenu(gracz);
