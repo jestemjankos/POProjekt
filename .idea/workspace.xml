@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b521ed67-1063-4a55-a372-32ae2573f1e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackjackFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackjackFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DiceGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DicePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DicePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gracz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gracz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoreBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daneGraczy.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/daneGraczy.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/listaGraczy.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/listaGraczy.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainMenu.java" afterDir="false" />
@@ -48,25 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BlackJack.executor": "Run",
-    "Application.BlackjackFrame.executor": "Run",
-    "Application.DiceGame.executor": "Run",
-    "Application.kolkoKrzyzyk.executor": "Run",
-    "Application.logInScreen.executor": "Run",
-    "Application.mainMenu.executor": "Run",
-    "Application.registerScreen.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/macie/IdeaProjects/projektPO/src/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BlackJack.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BlackjackFrame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.kolkoKrzyzyk.executor&quot;: &quot;Run&quot;,
+    &quot;Application.logInScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mainMenu.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/macie/IdeaProjects/projektPO/src/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Użytkownik\Documents\GitHub\POProjekt\src" />
